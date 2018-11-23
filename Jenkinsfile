@@ -48,11 +48,13 @@ pipeline {
             sh "jx step git credentials"
             // so we can retrieve the version in later steps
             sh "echo `which jx-release-version`"
-            sh "cat `which jx-release-version`"
+            # sh "cat `which jx-release-version`"
+            sh "file `which jx-release-verion`"
             sh "echo `whoami`"
             sh "echo $PATH"
             sh "echo `env`"
-            sh "echo \$(jx-release-version -debug) > VERSION"
+            # sh "echo \$(jx-release-version -debug) > VERSION"
+            "echo 'v1.0' > VERSION"
           }
           dir ('./charts/python-test-qs') {
             container('python') {
