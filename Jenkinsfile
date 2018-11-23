@@ -54,7 +54,7 @@ pipeline {
             sh "echo $PATH"
             sh "echo `env`"
             // sh "echo \$(jx-release-version -debug) > VERSION"
-            "echo 'v1.0' > VERSION"
+            sh "echo 'v1.0' > VERSION"
           }
           dir ('./charts/python-test-qs') {
             container('python') {
