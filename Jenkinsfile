@@ -49,7 +49,7 @@ pipeline {
             // so we can retrieve the version in later steps
             sh "echo `which jx-release-version`"
             // sh "cat `which jx-release-version`"
-            sh "file `which jx-release-verion`"
+            sh "file `which jx-release-version`"
             sh "echo `whoami`"
             sh "echo $PATH"
             sh "echo `env`"
