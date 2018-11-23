@@ -52,11 +52,11 @@ pipeline {
             sh "file `which jx-release-version`"
             sh "echo `whoami`"
             sh "echo $PATH"
-            sh "export http_proxy=http://one.proxy.att.com:8080"
-            sh "export https_proxy=http://one.proxy.att.com:8080"
+            // sh "export http_proxy=http://one.proxy.att.com:8080"
+            // sh "export https_proxy=http://one.proxy.att.com:8080"
             sh "echo `env`"
-            // sh "echo \$(jx-release-version -debug) > VERSION"
-            sh "echo 'v1.0' > VERSION"
+            sh "echo \$(export http_proxy=http://one.proxy.att.com:8080 && export https_proxy=http://one.proxy.att.com:8080 && jx-release-version) > VERSION"
+            // sh "echo 'v1.0' > VERSION"
           }
           dir ('./charts/python-test-qs') {
             container('python') {
