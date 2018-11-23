@@ -47,7 +47,7 @@ pipeline {
 
             sh "jx step git credentials"
 
-            sh "echo \$(http_proxy=http://one.proxy.att.com:8080 && https_proxy=http://one.proxy.att.com:8080 && jx-release-version) > VERSION"
+            sh "echo \$(export http_proxy=http://one.proxy.att.com:8080 && export https_proxy=http://one.proxy.att.com:8080 && jx-release-version) > VERSION"
             // sh "echo 'v1.0' > VERSION"
           }
           dir ('./charts/python-test-qs') {
@@ -60,6 +60,7 @@ pipeline {
 
             // sh 'pwd'
             // sh 'ls -la'
+            sh 'unset http_proxy https_proxy'
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
 
             sh 'docker images'
