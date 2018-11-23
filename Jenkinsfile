@@ -46,16 +46,8 @@ pipeline {
             sh "git config --global credential.helper store"
 
             sh "jx step git credentials"
-            // so we can retrieve the version in later steps
-            // sh "echo `which jx-release-version`"
-            // sh "cat `which jx-release-version`"
-            // sh "file `which jx-release-version`"
-            // sh "echo `whoami`"
-            // sh "echo $PATH"
-            // sh "export http_proxy=http://one.proxy.att.com:8080"
-            // sh "export https_proxy=http://one.proxy.att.com:8080"
-            // sh "echo `env`"
-            sh "echo \$(export http_proxy=http://one.proxy.att.com:8080 && export https_proxy=http://one.proxy.att.com:8080 && jx-release-version) > VERSION"
+
+            sh "echo \$(http_proxy=http://one.proxy.att.com:8080 && https_proxy=http://one.proxy.att.com:8080 && jx-release-version) > VERSION"
             // sh "echo 'v1.0' > VERSION"
           }
           dir ('./charts/python-test-qs') {
