@@ -66,9 +66,12 @@ pipeline {
           container('python') {
             sh "python -m unittest"
 
-            sh 'pwd'
-            sh 'ls -la'
+            // sh 'pwd'
+            // sh 'ls -la'
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
+
+            sh 'docker images'
+            sh 'ping -n 10 $DOCKER_REGISTRY'
 
             sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
           }
