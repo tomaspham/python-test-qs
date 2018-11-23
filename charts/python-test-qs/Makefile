@@ -43,6 +43,6 @@ else
 	exit -1
 endif
 	git add --all
-	export http_proxy=http://one.proxy.att.com:8080 && export https_proxy=http://one.proxy.att.com:8080 && git commit -m "release $(RELEASE_VERSION)" --allow-empty # if first release then no verion update is performed
+	git commit -m "release $(RELEASE_VERSION)" --allow-empty # if first release then no verion update is performed
 	git tag -fa v$(RELEASE_VERSION) -m "Release version $(RELEASE_VERSION)"
 	export http_proxy=http://one.proxy.att.com:8080 && export https_proxy=http://one.proxy.att.com:8080 && git push origin v$(RELEASE_VERSION)
