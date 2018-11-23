@@ -61,10 +61,11 @@ pipeline {
             // sh 'pwd'
             // sh 'ls -la'
             sh 'unset http_proxy https_proxy'
-            sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
 
             sh 'docker images'
             sh 'ping -n 10 $DOCKER_REGISTRY'
+
+            sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
 
             sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
           }
