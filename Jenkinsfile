@@ -63,7 +63,7 @@ pipeline {
             sh 'unset http_proxy https_proxy'
 
             sh 'docker images'
-            sh 'ping -n 10 $DOCKER_REGISTRY'
+            sh 'ping -c 3 10.96.28.112'
 
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
 
