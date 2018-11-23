@@ -47,6 +47,10 @@ pipeline {
 
             sh "jx step git credentials"
             // so we can retrieve the version in later steps
+            sh "echo `which jx-release-version`"
+            sh "echo `whoami`"
+            sh "echo $PATH"
+            sh "echo `env`"
             sh "echo \$(jx-release-version -debug) > VERSION"
           }
           dir ('./charts/python-test-qs') {
