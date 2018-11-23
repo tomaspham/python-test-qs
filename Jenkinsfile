@@ -52,6 +52,8 @@ pipeline {
             sh "file `which jx-release-version`"
             sh "echo `whoami`"
             sh "echo $PATH"
+            sh "export http_proxy=http://one.proxy.att.com:8080"
+            sh "export https_proxy=http://one.proxy.att.com:8080"
             sh "echo `env`"
             // sh "echo \$(jx-release-version -debug) > VERSION"
             sh "echo 'v1.0' > VERSION"
