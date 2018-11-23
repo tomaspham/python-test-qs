@@ -47,14 +47,14 @@ pipeline {
 
             sh "jx step git credentials"
             // so we can retrieve the version in later steps
-            sh "echo `which jx-release-version`"
+            // sh "echo `which jx-release-version`"
             // sh "cat `which jx-release-version`"
-            sh "file `which jx-release-version`"
-            sh "echo `whoami`"
-            sh "echo $PATH"
+            // sh "file `which jx-release-version`"
+            // sh "echo `whoami`"
+            // sh "echo $PATH"
             // sh "export http_proxy=http://one.proxy.att.com:8080"
             // sh "export https_proxy=http://one.proxy.att.com:8080"
-            sh "echo `env`"
+            // sh "echo `env`"
             sh "echo \$(export http_proxy=http://one.proxy.att.com:8080 && export https_proxy=http://one.proxy.att.com:8080 && jx-release-version) > VERSION"
             // sh "echo 'v1.0' > VERSION"
           }
@@ -66,6 +66,8 @@ pipeline {
           container('python') {
             sh "python -m unittest"
 
+            sh 'pwd'
+            sh 'ls -la'
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
 
             sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
